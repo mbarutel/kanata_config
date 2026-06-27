@@ -5,28 +5,41 @@
   tab  q    w    e    r    t         y    u    i    o    p    [    ]    \
   caps a    s    d    f    g         h    j    k    l    ;    '    ret
   lsft z    x    c    v    b         n    m    ,    .    /    rsft
-  lctl lalt lmet           spc                 rmet ralt
+  fn lctl lalt lmet           spc                 rmet ralt
 )
 
 (deflayer colemak
-  caps  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
+  caps _    _    _    _    _         _    _    _    _    _    _    _
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    @scr_sht
   tab  q    w    f    p    g    j    l    u    y    '    [    ]    \
   @esc_met a    r    s    t    d    h    n    e    i    o    ;    @ret_rmet
   lsft z    x    c    v    b    k    m    ,    .    /    rsft
-  lctl lalt @del_lctl           spc                 @bspc_rctl ralt
+  @fn lctl lalt @del_lctl           @spc_nav                 @bspc_rctl ralt
 )
 
 (deflayer nav
-  _    _    _    _    _    _    _    _    _    _    _    _    _
+  _ _    _    _    _    _         _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    lmet lalt  lctl lsft _    caps left down up   right _    _
   _    _    _    _    _    _    _    home _    _    end   _
-  _    _    _              _                   _    _    
+  _ _    _    _              _                   _    _    
+)
+
+(deflayer fn
+  _  🔅   🔆   nop0 nop1 nop2 nop3 ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    lmet lalt  lctl lsft _    caps left down up   right _    _
+  _    _    _    _    _    _    _    home _    _    end   _
+  _ _    _    _              _                   _    _    
 )
 
 (defalias
+  fn (layer-toggle fn)
+
+  scr_sht (multi lmet lsft 4)
+
   ;; tap for space, hold to toggle nav layer
   spc_nav (tap-hold-release 200 200 spc (layer-toggle nav))
   ;; tap for escape, hold for left meta
