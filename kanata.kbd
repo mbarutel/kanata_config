@@ -17,6 +17,15 @@
   @fn lctl lalt @del_lctl           @spc_nav                 @bspc_rctl ralt
 )
 
+(deflayer source
+  _ _    _    _    _    _         _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    
+  _    _    _    _    _    _    _    _ _    _    _   _
+  @fn _    _    _              _                   _    _    
+)
+
 (deflayer nav
   _ _    _    _    _    _         _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
@@ -27,7 +36,7 @@
 )
 
 (deflayer fn
-  _  🔅   🔆   nop0 nop1 nop2 nop3 ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
+  _  🔅   🔆   @src @clm nop2 nop3 ◀◀   ▶⏸   ▶▶   🔇   🔉   🔊
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    lmet lalt  lctl lsft _    caps left down up   right _    _
@@ -36,6 +45,9 @@
 )
 
 (defalias
+  src (layer-switch source)
+  clm (layer-switch colemak)
+
   fn (layer-toggle fn)
 
   scr_sht (multi lmet lsft 4)
