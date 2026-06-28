@@ -30,9 +30,9 @@
   _ _    _    _    _    _         _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    lmet lalt  lctl lsft _    caps left down up   right _    _
+  _    lmet lalt  lctl lsft @ctrl_b    caps left down up   right _    _
   _    _    _    _    _    _    _    home _    _    end   _
-  _ _    _    _              _                   _    _    
+  _ _    _    @alt_del              _                   @alt_bscp    _    
 )
 
 (deflayer fn
@@ -51,6 +51,11 @@
   fn (layer-toggle fn)
 
   scr_sht (multi lmet lsft 4)
+
+  alt_bscp (multi ralt bspc)
+  alt_del (multi lalt del)
+
+  ctrl_b (multi lctrl b)
 
   ;; tap for space, hold to toggle nav layer
   spc_nav (tap-hold-release 200 200 spc (layer-toggle nav))
