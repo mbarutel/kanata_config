@@ -10,10 +10,10 @@
 
 (deflayer colemak
   caps _    _    _    _    _         _    _    _    _    _    _    _
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    @scr_sht
-  tab  q    w    f    p    g    j    l    u    y    '    [    ]    \
-  @esc_met a    r    s    t    d    h    n    e    i    o    ;    @ret_rmet
-  lsft z    x    c    v    b    k    m    ,    .    /    rsft
+  grv  1    2    3    4    5    6    7    8    9    0    -    =    @scr_sht_cpy
+  tab  q    w    f    p    g    j    l    u    y    '    [    ]    @rmet_slash
+  @esc_met a    r    s    t    d    h    n    e    i    o    ;    @ret_lmet
+  @lsft_sticky z    x    c    v    b    k    m    ,    .    /    @rsft_sticky
   @fn lctl lalt @del_lctl           @spc_nav                 @bspc_rctl ralt
 )
 
@@ -28,7 +28,7 @@
 
 (deflayer nav
   _ _    _    _    _    _         _    _    _    _    _    _    _
-  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _    _    _    _    _    _    _    _    _    _    @scr_sht
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    lmet lalt  lctl lsft @ctrl_b    caps left down up   right _    _
   _    _    _    _    _    _    _    home _    _    end   _
@@ -50,30 +50,41 @@
 
   fn (layer-toggle fn)
 
-  scr_sht (multi lmet lsft 4)
-
   alt_bscp (multi ralt bspc)
   alt_del (multi lalt del)
 
   ctrl_b (multi lctrl b)
 
+  rsft_sticky (one-shot 1000 rsft)
+  lsft_sticky (one-shot 1000 lsft)
+
+  rmet_slash (tap-hold-release $tap-time $hold-time \ rmet)
+
+  ;; Screenshots
+  scr_sht (multi lmet lsft 4)
+  scr_sht_cpy (multi lmet lsft lctrl 4)
+
   ;; tap for space, hold to toggle nav layer
-  spc_nav (tap-hold-release 200 200 spc (layer-toggle nav))
+  spc_nav (tap-hold-release $tap-time $hold-time spc (layer-toggle nav))
+
   ;; tap for escape, hold for left meta
-  esc_met (tap-hold-release 200 200 esc lmet)
-  ;; tap for return, hold for right meta
-  ret_rmet (tap-hold-release 200 200 ret rmet)
+  esc_met (tap-hold-release $tap-time $hold-time esc lmet)
+
+  ;; tap for return, hold for left meta
+  ret_lmet (tap-hold-release $tap-time $hold-time ret lmet)
+
   ;; tap for delete, hold for left control
-  del_lctl (tap-hold-release 200 200 del lctl)
+  del_lctl (tap-hold-release $tap-time $hold-time del lctl)
+
   ;; tap for backspace, hold for right control
-  bspc_rctl (tap-hold-release 200 200 bspc rctl)
+  bspc_rctl (tap-hold-release $tap-time $hold-time bspc rctl)
 )
 
 (defvar
   ;; Note: consider using different time values for your different fingers.
   ;; For example, your pinkies might be slofew to release keys and index
   ;; fingers faster.
-  tap-time 200
-  hold-time 200
-  hold-time-slow 300
+  tap-time 160
+  hold-time 160
+  hold-time-slow 250
 )
