@@ -10,10 +10,10 @@
 
 (deflayer colemak
   caps _    _    _    _    _         _    _    _    _    _    _    _
-  grv  1    2    3    4    5    6    7    8    9    0    -    =    @scr_sht_cpy
+  grv  @one    @two    @three    @four    @five    @six    @seven    @eight    @nine    @zero    -    =    @scr_sht_cpy
   tab  q    w    f    p    g    j    l    u    y    '    [    ]    \
   @esc_met a    r    s    t    d    h    n    e    i    o    ;    @ret_rmet
-  @lsft_sticky z    x    c    v    b    k    m    ,    .    /    @rsft_sticky
+  @lsft_sticky @z_gui    @x_alt    @c_ctl    @v_sft    b    k    @m_sft    @comma_ctl    @dot_alt    @slsh_gui    @rsft_sticky
   @fn lctl lalt @del_lctl           @spc_nav                 @bspc_rctl ralt
 )
 
@@ -45,16 +45,19 @@
 )
 
 (defalias
+  ;; Layer switching
   src (layer-switch source)
   clm (layer-switch colemak)
-
   fn (layer-toggle fn)
 
+  ;; Word to word bspc and del
   alt_bscp (multi ralt bspc)
   alt_del (multi lalt del)
 
+  ;; Tmux Leader Combo
   ctrl_b (multi lctrl b)
 
+  ;; Sticky Shift
   rsft_sticky (one-shot 1000 rsft)
   lsft_sticky (one-shot 1000 lsft)
 
@@ -76,6 +79,41 @@
 
   ;; tap for backspace, hold for right control
   bspc_rctl (tap-hold-release $tap-time $hold-time bspc rctl)
+
+  ;; Bottom row mods Left Side
+  z_gui (tap-hold-release $tap-time $hold-time z lmet)
+  x_alt (tap-hold-release $tap-time $hold-time x lalt)
+  c_ctl (tap-hold-release $tap-time $hold-time c lctl)
+  v_sft (tap-hold-release $tap-time $hold-time v lsft)
+
+  ;; Bottom row mods Right Side
+  m_sft (tap-hold-release $tap-time $hold-time m lsft)
+  comma_ctl (tap-hold-release $tap-time $hold-time , lctl)
+  dot_alt (tap-hold-release $tap-time $hold-time . lalt)
+  slsh_gui (tap-hold-release $tap-time $hold-time / lmet)
+
+  ;; Workspace moving shortcuts
+  alt_one (multi lalt 1)
+  alt_two (multi lalt 2)
+  alt_three (multi lalt 3)
+  alt_four (multi lalt 4)
+  alt_five (multi lalt 5)
+  alt_six (multi lalt 6)
+  alt_seven (multi lalt 7)
+  alt_eight (multi lalt 8)
+  alt_nine (multi lalt 9)
+  alt_zero (multi lalt 0)
+
+  one (tap-hold-release $tap-time $hold-time 1 @alt_one)
+  two (tap-hold-release $tap-time $hold-time 2 @alt_two)
+  three (tap-hold-release $tap-time $hold-time 3 @alt_three)
+  four (tap-hold-release $tap-time $hold-time 4 @alt_four)
+  five (tap-hold-release $tap-time $hold-time 5 @alt_five)
+  six (tap-hold-release $tap-time $hold-time 6 @alt_six)
+  seven (tap-hold-release $tap-time $hold-time 7 @alt_seven)
+  eight (tap-hold-release $tap-time $hold-time 8 @alt_eight)
+  nine (tap-hold-release $tap-time $hold-time 9 @alt_nine)
+  zero (tap-hold-release $tap-time $hold-time 0 @alt_zero)
 )
 
 (defvar
