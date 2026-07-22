@@ -13,7 +13,7 @@
   grv  @one    @two    @three    @four    @five    @six    @seven    @eight    @nine    @zero    -    =    @scr_sht_cpy
   tab  q    w    f    p    g    j    l    u    y    '    [    ]    \
   @esc_met a    r    s    t    d    h    n    e    i    o    ;    @ret_rmet
-  @lsft_sticky @z_gui    @x_alt    @c_ctl    @v_sft    b    k    @m_sft    @comma_ctl    @dot_alt    @slsh_gui    @rsft_sticky
+  @lsft_sticky @z_gui    @x_alt    @c_ctl    @v_sft    @b_tmux    k    @m_sft    @comma_ctl    @dot_alt    @slsh_gui    @rsft_sticky
   @fn lctl lalt @del_lctl           @spc_nav                 @bspc_rctl ralt
 )
 
@@ -56,6 +56,7 @@
 
   ;; Tmux Leader Combo
   ctrl_b (multi lctrl b)
+  b_tmux (tap-hold-release $tap-time $hold-time b @ctrl_b)
 
   ;; Sticky Shift
   rsft_sticky (one-shot 1000 rsft)
