@@ -17,37 +17,56 @@
   grv  1    2    3    4    5    6    7    8    9    0    -    =    bspc
   tab  q    w    f    p    g    j    l    u    y    '    [    ]    \
   @esc_met a    r    s    t    d    h    n    e    i    o    ;    @ret_rmet
-  lsft z    x    c    v    b    k    m    ,    .    /    rsft
-  @del_lctl lmet lalt           @spc_nav              @bspc_rctl ssrq rmet
+  lsft @lmod_z @lmod_x @lmod_c @lmod_v    @tmx_b    k    @lmod_m    @lmod_,    @lmod_.    @lmod_/    rsft
+  lalt @lmet_sft @del_lctl           @spc_nav              @bspc_rctl ssrq @rmet_sft
 )
 
 (deflayer nav
   _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
   _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    lmet lalt  lctl lsft _    caps left down up   right _    _
+  _    lmet lalt  lctl lsft @tmx_ldr    caps left down up   right _    _
   _    _    _    _    _    _    _    home _    _    end   _
   _    _    _              _                   _    _    _
 )
 
 (defalias
+  ;; tmux leader
+  tmx_ldr (multi lctl b)
+  tmx_b (tap-hold-release 200 200 b @tmx_ldr)
+
+  ;; sft met
+  lmet_sft (multi lmet lsft)
+  rmet_sft (multi rmet rsft)
+
   ;; tap for space, hold to toggle nav layer
-  spc_nav (tap-hold-release 200 200 spc (layer-toggle nav))
+  spc_nav (tap-hold-release $tap-time $hold-time spc (layer-toggle nav))
   ;; tap for escape, hold for left meta
-  esc_met (tap-hold-release 200 200 esc lmet)
+  esc_met (tap-hold-release $tap-time $hold-time esc lmet)
   ;; tap for return, hold for right meta
-  ret_rmet (tap-hold-release 200 200 ret rmet)
+  ret_rmet (tap-hold-release $tap-time $hold-time ret rmet)
   ;; tap for delete, hold for left control
-  del_lctl (tap-hold-release 200 200 del lctl)
+  del_lctl (tap-hold-release $tap-time $hold-time del lctl)
   ;; tap for backspace, hold for right control
-  bspc_rctl (tap-hold-release 200 200 bspc rctl)
+  bspc_rctl (tap-hold-release $tap-time $hold-time bspc rctl)
+
+  ;; bottom row mods
+  lmod_z (tap-hold-release 200 200 z lmet)
+  lmod_x (tap-hold-release 200 200 x lalt)
+  lmod_c (tap-hold-release 200 200 c lctl)
+  lmod_v (tap-hold-release 200 200 v lsft)
+
+  lmod_m (tap-hold-release 200 200 m lsft)
+  lmod_, (tap-hold-release 200 200 , lctl)
+  lmod_. (tap-hold-release 200 200 . lalt)
+  lmod_/ (tap-hold-release 200 200 / lmet)
 )
 
 (defvar
   ;; Note: consider using different time values for your different fingers.
   ;; For example, your pinkies might be slofew to release keys and index
   ;; fingers faster.
-  tap-time 200
-  hold-time 200
-  hold-time-slow 300
+  tap-time 160
+  hold-time 160
+  hold-time-slow 250
 )
